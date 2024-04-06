@@ -51,9 +51,9 @@ export const handler = api<Forward>(
     const hashKey = getRedisKey(REDIS_KEY.MAP_SHORTEN_BY_HASH, hash);
     const shortenedUrlCache = (await redis.hgetall(hashKey)) as any;
     if (!isEmpty(shortenedUrlCache)) {
+      // cache hit
       valid = shortenService.verifyToken(shortenedUrlCache, token);
       if (!valid) return res.send({ errorCode: HttpStatusCode.UNAUTHORIZED, errorMessage: 'UNAUTHORIZED' });
-      // cache hit
       sendMessageToQueue([{ subject: 'forward', body: data }]);
       return successHandler(res, { history: shortenedUrlCache, token: encryptS(shortenedUrlCache.id.toString()) });
     }
