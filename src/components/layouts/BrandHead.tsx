@@ -15,7 +15,7 @@ export const BrandHead = ({ feature = FeatureTabKey.SHARE_LINK }: { feature?: Fe
       : feature === FeatureTabKey.SHARE_TEXT
       ? t('brandTitleNote')
       : t('brandTitle')
-    : 'Quickshare | 404 Not Found';
+    : '404 Not Found';
   const brandDescription = locale ? t('brandDescription') : '404 Not Found';
 
   return (
