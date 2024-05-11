@@ -38,21 +38,21 @@ jobs:
             NEXT_PUBLIC_SHORT_DOMAIN=false
           push: true
           tags: ghcr.io/${{ github.repository }}:uat-latest
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.QUICKSHAREFULLUAT1010_AZURE_CREDENTIALS }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Azure Login
+  #       uses: azure/login@v1
+  #       with:
+  #         creds: ${{ secrets.QUICKSHAREFULLUAT1010_AZURE_CREDENTIALS }}
 
-      - name: Deploy to container image
-        uses: azure/container-apps-deploy-action@v1
-        with:
-          containerAppName: quickshare-full-uat-1010
-          resourceGroup: shared
-          imageToDeploy: ghcr.io/${{ github.repository }}:uat-latest
+  #     - name: Deploy to container image
+  #       uses: azure/container-apps-deploy-action@v1
+  #       with:
+  #         containerAppName: quickshare-full-uat-1010
+  #         resourceGroup: shared
+  #         imageToDeploy: ghcr.io/${{ github.repository }}:uat-latest
   # deploy:
   #   needs: build
   #   runs-on: ubuntu-latest

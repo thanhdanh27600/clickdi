@@ -1,5 +1,5 @@
 const amqp = require('amqplib');
-const { logger } = require('../utils');
+const { logger, isTest } = require('../utils');
 const { postProcessForward } = require('../postProcessForward');
 
 
@@ -17,6 +17,7 @@ const queueName = process.env.RABBITMQ_QUEUE_NAME;
  */
 async function sendMessageToRabbitQueue(message) {
     try {
+        if (isTest) return;
         if (!amqpUrl) throw new Error('Not found AMQP URL!')
         if (!queueName) throw new Error('Queue name not found!')
         // Connect to RabbitMQ
