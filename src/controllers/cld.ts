@@ -3,8 +3,7 @@ import { api, badRequest, successHandler } from '../utils/axios';
 
 export const handler = api(
   async (req, res) => {
-    const body = JSON.parse(req.body) || {};
-    const { paramsToSign } = body;
+    const { paramsToSign } = req.body;
     if (!process.env.CLOUDINARY_API_SECRET) {
       console.error('Not found CLOUDINARY_API_SECRET');
       return badRequest(res);
