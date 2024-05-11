@@ -1,3 +1,4 @@
 import { shorten } from 'controllers';
+import { allowCors } from '../../../requests/api';
 
-export default shorten.update.handler;
+export default allowCors(shorten.update.handler);

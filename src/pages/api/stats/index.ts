@@ -1,3 +1,4 @@
 import { stats } from 'controllers';
+import { allowCors } from '../../../requests/api';
 
-export default stats.handler;
+export default allowCors(stats.handler);

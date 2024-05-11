@@ -8,6 +8,7 @@ export const brandUrl = 'https://quickshare.at';
 export const brandUrlShort = 'https://qsh.at';
 export const brandUrlUat = 'https://uat.quickshare.at';
 export const brandUrlShortUat = 'https://uat.qsh.at';
+export const alternativeUrls = ['https://mirror.quickshare.at', 'https://mirror.qsh.at'];
 
 export const brandUrlShortDomain = 'qsh.at';
 export const isTest = process.env.NODE_ENV === 'test';

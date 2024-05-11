@@ -1,5 +1,6 @@
 const { ServiceBusClient } = require('@azure/service-bus');
 const { connectionString, queueName, isTest, logger } = require('./utils');
+const { sendMessageToRabbitQueue } = require('./rabbit')
 
 /**
  * An array of objects representing message types.
