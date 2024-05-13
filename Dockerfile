@@ -1,5 +1,5 @@
 # Get NPM packages
-FROM node:18-alpine AS dependencies
+FROM node:20-alpine AS dependencies
 ARG GEOLITE2_LICENSE_KEY
 ARG NEXT_PUBLIC_SHORT_DOMAIN
 CMD ["echo", "NEXT_PUBLIC_SHORT_DOMAIN=$NEXT_PUBLIC_SHORT_DOMAIN"]
