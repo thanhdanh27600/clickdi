@@ -8,6 +8,7 @@ const connectionString =
 const queueName = process.env.AZURE_BUS_QUEUE_NAME || '';
 
 const isTest = process.env.NODE_ENV === 'test';
+const isLocal = process.env.NEXT_PUBLIC_BUILD_ENV === 'local';
 
 const logger = pino(
   {
@@ -28,5 +29,6 @@ module.exports = {
   connectionString,
   queueName,
   isTest,
+  isLocal,
   logger,
 };

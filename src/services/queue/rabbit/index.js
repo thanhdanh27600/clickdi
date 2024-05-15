@@ -1,7 +1,6 @@
 const amqp = require('amqplib');
-const { logger, isTest } = require('../utils');
+const { logger, isTest, isLocal } = require('../utils');
 const { postProcessForward } = require('../postProcessForward');
-const { isLocal } = require('types/constants');
 
 
 // RabbitMQ connection URL
