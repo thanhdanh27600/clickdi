@@ -1,6 +1,7 @@
 const amqp = require('amqplib');
 const { logger, isTest } = require('../utils');
 const { postProcessForward } = require('../postProcessForward');
+const { isLocal } = require('types/constants');
 
 
 // RabbitMQ connection URL
@@ -27,7 +28,7 @@ async function sendMessageToRabbitQueue(message) {
         // Create the queue if it doesn't exist
         await channel.assertQueue(queueName, { durable: false });
 
-        console.log("Sending...", message)
+        if (isLocal) console.log("Sending...", message);
         // Send the message to the queue
         channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)));
 
