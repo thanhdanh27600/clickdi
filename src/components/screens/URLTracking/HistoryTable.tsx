@@ -13,7 +13,7 @@ import { getCountryName } from 'utils/country';
 import date, { DATE_FULL_FORMAT } from 'utils/date';
 import { useTrans } from 'utils/i18next';
 import { PAGE_SIZE } from 'utils/requests';
-import { capitalize } from 'utils/text';
+import { capitalize, truncateMiddle } from 'utils/text';
 
 interface Props {
   history?: UrlHistoryWithMeta;
@@ -116,8 +116,8 @@ export const HistoryTable = (props: Props) => {
                     {UA ? (
                       <div>
                         <p>
-                          Device: {capitalize(UA?.getDevice().type) || t('unknown')} {UA?.getDevice().vendor}{' '}
-                          {UA?.getDevice().model}
+                          Device: {UA?.getDevice().vendor} {UA?.getDevice().model}{' '}
+                          {capitalize(UA?.getDevice().type) || t('unknown')}
                         </p>
                         <p>OS: {UA?.getOS().name || t('unknown')}</p>
                         <p>Browser: {UA?.getBrowser().name || t('unknown')}</p>
@@ -167,7 +167,11 @@ export const HistoryTable = (props: Props) => {
                     ) : (
                       <>
                         <UserX className="mr-1 w-6 stroke-2 text-red-500" />
-                        {ref && <p>{ref}</p>}
+                        {ref && (
+                          <div className="max-w-xs" title={ref}>
+                            <p className="line-clamp-1 block text-ellipsis whitespace-nowrap">{truncateMiddle(ref)}</p>
+                          </div>
+                        )}
                       </>
                     )}
                   </td>
