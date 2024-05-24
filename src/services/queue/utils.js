@@ -9,6 +9,7 @@ const queueName = process.env.AZURE_BUS_QUEUE_NAME || '';
 
 const isTest = process.env.NODE_ENV === 'test';
 const isLocal = process.env.NEXT_PUBLIC_BUILD_ENV === 'local';
+const queuePlatform = process.env.QUEUE_PLATFORM;
 
 const logger = pino(
   {
@@ -30,5 +31,6 @@ module.exports = {
   queueName,
   isTest,
   isLocal,
+  queuePlatform,
   logger,
 };
