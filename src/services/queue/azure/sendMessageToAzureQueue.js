@@ -1,6 +1,5 @@
 const { ServiceBusClient } = require('@azure/service-bus');
-const { connectionString, queueName, isTest, logger } = require('./utils');
-const { sendMessageToRabbitQueue } = require('./rabbit')
+const { connectionString, queueName, isTest, isLocal, logger } = require('../utils');
 
 /**
  * An array of objects representing message types.
@@ -19,7 +18,7 @@ const { sendMessageToRabbitQueue } = require('./rabbit')
  * @param {MessageTypesArray} messages - An array of message types.
  * @returns {Promise<void>} A Promise that resolves when the processing is complete.
  */
-async function sendMessageToQueue(messages) {
+async function sendMessageToAzureQueue(messages) {
   if (isTest) return;
   try {
     // create a Service Bus client using the connection string to the Service Bus namespace
@@ -55,7 +54,7 @@ async function sendMessageToQueue(messages) {
     }
 
     // Send the last created batch of messages to the queue
-    // console.log(`Sending a batch of messages to the queue: ${queueName}`);
+    if (isLocal) console.log(`Sending a batch of messages ${JSON.stringify(messages)} to the queue: ${queueName}`);
     await sender.sendMessages(batch);
 
     // Close the sender
@@ -67,4 +66,4 @@ async function sendMessageToQueue(messages) {
   }
 }
 
-module.exports = { sendMessageToQueue };
+module.exports = { sendMessageToAzureQueue };
