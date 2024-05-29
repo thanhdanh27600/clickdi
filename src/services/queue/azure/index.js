@@ -28,6 +28,7 @@ async function myMessageHandler(message) {
         break;
     }
   } catch (error) {
+    console.error('[postProcessForward]', message);
     logger.error(error);
     throw error;
   }

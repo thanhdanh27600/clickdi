@@ -1,4 +1,3 @@
-import axios from 'axios';
 import requestIp from 'request-ip';
 import { shortenCacheService } from '../../services/cache/shorten.service';
 import prisma from '../../services/db/prisma';
@@ -9,7 +8,6 @@ import { RESERVED_HASH } from '../../types/constants';
 import { ShortenUrl } from '../../types/shorten';
 import { api, badRequest, successHandler } from '../../utils/axios';
 import { decrypt, decryptS } from '../../utils/crypto';
-import { extractBaseUrl, extractOgMetaTags } from '../../utils/dom';
 import HttpStatusCode from '../../utils/statusCode';
 import { validateShortenSchema } from '../../utils/validateMiddleware';
 
@@ -65,14 +63,26 @@ export const handler = api<ShortenUrl>(
       });
     }
 
-    // extract og metas
-    let htmlString = '';
-    try {
-      htmlString = (await axios.get(url, { timeout: 3000 })).data;
-    } catch (error) {}
+    let socialMetaTags = {} as Record<string, string>;
 
-    const baseUrl = extractBaseUrl(url);
-    const socialMetaTags = extractOgMetaTags(htmlString, baseUrl);
+    // if (!checkDownloadLink(url)) {
+    //   // extract og metas
+    //   let htmlString = '';
+    //   try {
+    //     const config: AxiosRequestConfig<string> = {
+    //       url,
+    //       method: 'options',
+    //       responseType: 'json',
+    //       timeout: 1000,
+    //     };
+
+    //     htmlString = (await axios(config)).data;
+    //     console.log('htmlString', htmlString);
+    //   } catch (error) {}
+
+    //   const baseUrl = extractBaseUrl(url);
+    //   socialMetaTags = extractOgMetaTags(htmlString, baseUrl);
+    // }
 
     // write to db
     const record = await recordService.getOrCreate(req, ip);
