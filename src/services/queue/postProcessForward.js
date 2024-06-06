@@ -2,6 +2,8 @@ const { isEmpty } = require('ramda');
 const prisma = require('../db/prisma');
 const { redis } = require('../../redis');
 
+const tasks = []
+
 /**
  *  @param {import('../../types/forward').ForwardMeta} payload
  */
@@ -27,29 +29,56 @@ const postProcessForward = async (payload) => {
   }
 
   const historyId = Number(history.id);
+  const data = {
+    ip,
+    updatedAt,
+    userAgent,
+    urlShortenerHistoryId: historyId,
+    countryCode,
+    fromClientSide,
+  }
+  tasks.push(data)
+};
 
+// Async function to process each task
+async function processTask(task) {
+  // Perform some asynchronous operation on the task
   await prisma.urlForwardMeta.upsert({
     where: {
       userAgent_ip_urlShortenerHistoryId: {
-        ip,
-        userAgent,
-        urlShortenerHistoryId: historyId,
+        ip: task.ip,
+        userAgent: task.userAgent,
+        urlShortenerHistoryId: task.urlShortenerHistoryId,
       },
     },
     update: {
-      updatedAt,
-      countryCode,
-      fromClientSide,
+      updatedAt: task.updatedAt,
+      countryCode: task.countryCode,
+      fromClientSide: task.fromClientSide,
     },
-    create: {
-      ip,
-      updatedAt,
-      userAgent,
-      urlShortenerHistoryId: historyId,
-      countryCode,
-      fromClientSide,
-    },
-  });
-};
+    create: task,
+  });;
+  // Do something with the processed task
+  console.log(`Processed task: ${JSON.stringify(task)}`);
+}
 
-module.exports = { postProcessForward };
+// Function to clear the task queue
+function clearTaskQueue() {
+  tasks.length = 0;
+  console.log('Task queue cleared.');
+}
+
+// Loop through the tasks and process each one
+async function processTasks() {
+  console.log('Task length', tasks.length)
+  try {
+    for (const task of tasks) {
+      await processTask(task);
+    }
+    clearTaskQueue();
+  } catch (error) {
+    console.error('Error processing tasks:', error);
+  }
+}
+
+module.exports = { processTasks, postProcessForward };
