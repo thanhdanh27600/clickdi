@@ -2,7 +2,7 @@ const { isEmpty } = require('ramda');
 const prisma = require('../db/prisma');
 const { redis } = require('../../redis');
 
-const tasks = []
+const tasks = [];
 
 /**
  *  @param {import('../../types/forward').ForwardMeta} payload
@@ -59,13 +59,13 @@ async function processTask(task) {
     create: task,
   });;
   // Do something with the processed task
-  console.log(`Processed task: ${JSON.stringify(task)}`);
+  // console.log(`Processed task: ${JSON.stringify(task)}`);
 }
 
 // Function to clear the task queue
 function clearTaskQueue() {
   tasks.length = 0;
-  console.log('Task queue cleared.');
+  // console.log('Task queue cleared.');
 }
 
 // Loop through the tasks and process each one
@@ -78,6 +78,7 @@ async function processTasks() {
     clearTaskQueue();
   } catch (error) {
     console.error('Error processing tasks:', error);
+    console.log('Current tasks', tasks);
   }
 }
 
