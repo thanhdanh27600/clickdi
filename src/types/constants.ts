@@ -72,6 +72,7 @@ export const REDIS_KEY = {
   LIMIT_NOTE: 'limitNote',
   LIMIT_FILE: 'limitFile',
   MAP_SHORTEN_BY_HASH: 'hShort',
+  LIST_FORWARD: 'lForward',
   MAP_NOTE_BY_HASH: 'hNote',
   MAP_FILE_BY_HASH: 'hFile',
   OG_BY_HASH: 'og',

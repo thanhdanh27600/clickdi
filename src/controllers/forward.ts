@@ -2,7 +2,6 @@ import { clone, isEmpty } from 'ramda';
 import { redis } from '../redis';
 import { shortenCacheService } from '../services/cache';
 import { forwardCacheService } from '../services/cache/forward.service';
-import { sendMessageToQueue } from '../services/queue';
 import { shortenService } from '../services/shorten';
 import { REDIS_KEY, getRedisKey } from '../types/constants';
 import { Forward, ForwardMeta } from '../types/forward';
@@ -37,6 +36,9 @@ export const handler = api<Forward>(
     forwardCacheService.incLimitIp(ip);
 
     const lookupIp = ipLookup(ip) || undefined;
+
+    const hashKey = getRedisKey(REDIS_KEY.MAP_SHORTEN_BY_HASH, hash);
+
     const data: ForwardMeta = {
       hash,
       ip,
@@ -48,13 +50,14 @@ export const handler = api<Forward>(
 
     let valid = false;
     // Check from Cache
-    const hashKey = getRedisKey(REDIS_KEY.MAP_SHORTEN_BY_HASH, hash);
     const shortenedUrlCache = (await redis.hgetall(hashKey)) as any;
     if (!isEmpty(shortenedUrlCache)) {
       // cache hit
       valid = shortenService.verifyToken(shortenedUrlCache, token);
       if (!valid) return res.send({ errorCode: HttpStatusCode.UNAUTHORIZED, errorMessage: 'UNAUTHORIZED' });
-      sendMessageToQueue({ subject: 'forward', body: data });
+      data.urlShortenerHistoryId = shortenedUrlCache.id;
+      forwardCacheService.postForwardHash(data);
+      // sendMessageToQueue({ subject: 'forward', body: data });
       return successHandler(res, { history: shortenedUrlCache, token: encryptS(shortenedUrlCache.id.toString()) });
     }
     // cache missed, fetch and write back to cache
@@ -66,7 +69,9 @@ export const handler = api<Forward>(
     valid = shortenService.verifyToken(history, token);
     if (!valid) return res.send({ errorCode: HttpStatusCode.UNAUTHORIZED, errorMessage: 'UNAUTHORIZED' });
 
-    sendMessageToQueue({ subject: 'forward', body: data });
+    data.urlShortenerHistoryId = history.id;
+    // sendMessageToQueue({ subject: 'forward', body: data });
+    forwardCacheService.postForwardHash(data);
     shortenCacheService.postShortenHash(clone(history));
 
     if (history?.email) history.email = '';

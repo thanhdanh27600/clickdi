@@ -13,5 +13,6 @@ export type ForwardMeta = {
   userAgent: string;
   fromClientSide: boolean;
   countryCode: string;
+  urlShortenerHistoryId?: number;
   updatedAt: Date;
 };
