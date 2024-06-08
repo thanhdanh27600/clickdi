@@ -1,18 +1,21 @@
 const { queueReceiver } = require("./azure");
 const { sendMessageToAzureQueue } = require("./azure/sendMessageToAzureQueue");
+const { postProcessForward } = require("./postProcessForward");
 const { sendMessageToRabbitQueue, consumerMessagesRabbit } = require("./rabbit");
 const { queuePlatform } = require("./utils");
 
 const sendMessageToQueue = async (message) => {
-    switch (queuePlatform) {
-        case 'AZURE':
-            await sendMessageToAzureQueue([message])
-            break;
-        case 'RABBIT':
-        default:
-            await sendMessageToRabbitQueue(message);
-            break;
-    }
+    console.log('message.body', message.body);
+    postProcessForward(message.body);
+    // switch (queuePlatform) {
+    //     case 'AZURE':
+    //         await sendMessageToAzureQueue([message])
+    //         break;
+    //     case 'RABBIT':
+    //     default:
+    //         await sendMessageToRabbitQueue(message);
+    //         break;
+    // }
 }
 
 const runQueue = () => {

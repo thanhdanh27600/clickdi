@@ -1,5 +1,6 @@
 import { redis } from '../../redis';
 import { LIMIT_FORWARD_REQUEST, LIMIT_FORWARD_SECOND, REDIS_KEY, getRedisKey } from '../../types/constants';
+import { ForwardMeta } from '../../types/forward';
 
 export class ForwardCache {
   async limitFeature(ip: string) {
@@ -22,6 +23,10 @@ export class ForwardCache {
   async incLimitIp(ip: string) {
     const keyLimit = getRedisKey(REDIS_KEY.LIMIT_FORWARD, ip);
     await redis.incr(keyLimit);
+  }
+  async postForwardHash(forward: ForwardMeta) {
+    const hashKey = REDIS_KEY.LIST_FORWARD;
+    await redis.rpush(hashKey, JSON.stringify(forward));
   }
 }
 

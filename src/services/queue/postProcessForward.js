@@ -1,8 +1,9 @@
 const { isEmpty } = require('ramda');
 const prisma = require('../db/prisma');
 const { redis } = require('../../redis');
+const { isLocal } = require('./utils');
 
-const tasks = [];
+let tasks = []
 
 /**
  *  @param {import('../../types/forward').ForwardMeta} payload
@@ -41,14 +42,15 @@ const postProcessForward = async (payload) => {
 };
 
 // Async function to process each task
-async function processTask(task) {
-  // Perform some asynchronous operation on the task
+async function processTask(cachedData) {
+  const task = JSON.parse(cachedData);
+
   await prisma.urlForwardMeta.upsert({
     where: {
       userAgent_ip_urlShortenerHistoryId: {
         ip: task.ip,
         userAgent: task.userAgent,
-        urlShortenerHistoryId: task.urlShortenerHistoryId,
+        urlShortenerHistoryId: Number(task.urlShortenerHistoryId),
       },
     },
     update: {
@@ -56,10 +58,17 @@ async function processTask(task) {
       countryCode: task.countryCode,
       fromClientSide: task.fromClientSide,
     },
-    create: task,
-  });;
+    create: {
+      ip: task.ip,
+      userAgent: task.userAgent,
+      fromClientSide: task.fromClientSide,
+      countryCode: task.countryCode,
+      updatedAt: task.updatedAt,
+      urlShortenerHistoryId: Number(task.urlShortenerHistoryId),
+    },
+  });
   // Do something with the processed task
-  // console.log(`Processed task: ${JSON.stringify(task)}`);
+  if (isLocal) console.log(`Processed task: ${JSON.stringify(task)}`);
 }
 
 // Function to clear the task queue
@@ -70,7 +79,22 @@ function clearTaskQueue() {
 
 // Loop through the tasks and process each one
 async function processTasks() {
-  console.log('Task length', tasks.length)
+  try {
+    const key = `lForward`;
+    const listForward = await redis.lrange(key, 0, -1);
+
+    if (isLocal) console.log('listForward', listForward);
+    tasks = tasks.concat(listForward);
+    if (isLocal) console.log('tasks', tasks);
+
+    // Delete the list
+    await redis.del(key);
+
+  } catch (error) {
+    console.error('Error processing cached tasks:', error);
+    console.log('Current tasks', tasks);
+  }
+
   try {
     for (const task of tasks) {
       await processTask(task);
