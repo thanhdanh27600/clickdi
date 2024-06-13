@@ -18,7 +18,7 @@ function cronJob() {
 }
 
 function jobEvery1Minutes() {
-  console.log(`jobEvery1Minutes - ${new Date()}`);
+  // console.log(`jobEvery1Minutes - ${new Date()}`);
   processTasks()
 }
 
