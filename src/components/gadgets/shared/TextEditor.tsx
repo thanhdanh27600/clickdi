@@ -46,12 +46,12 @@ const TextEditor = ({ defaultValue, readonly }: { defaultValue?: string; readonl
       language: locale,
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt }',
     });
-  }, []);
+  }, [tinymce]);
 
   return (
     <div className={`${readonly ? 'tox-readonly' : ''}`}>
       <textarea
-        className="h-[300px] w-full"
+        className="h-[300px] w-full md:h-[500px]"
         id={id}
         defaultValue={defaultValue}
         placeholder={t('notePlaceholder')}></textarea>
