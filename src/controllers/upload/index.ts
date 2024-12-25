@@ -4,11 +4,11 @@ import { NextResponse } from 'next/server';
 import { NextApiRequest, NextApiResponse } from 'next/types';
 import path from 'path';
 import requestIp from 'request-ip';
-import HttpStatusCode from 'utils/statusCode';
-import { generateFileName } from 'utils/text';
 import prisma from '../../services/db/prisma';
 import { isDebug, LIMIT_FILE_UPLOAD } from '../../types/constants';
 import { api, successHandler } from '../../utils/axios';
+import HttpStatusCode from '../../utils/statusCode';
+import { generateFileName } from '../../utils/text';
 
 // File validation function
 function validateFile(file: formidable.File): boolean {
