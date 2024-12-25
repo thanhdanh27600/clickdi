@@ -4,7 +4,7 @@ ARG GEOLITE2_LICENSE_KEY
 ARG NEXT_PUBLIC_SHORT_DOMAIN
 CMD ["echo", "NEXT_PUBLIC_SHORT_DOMAIN=$NEXT_PUBLIC_SHORT_DOMAIN"]
 WORKDIR /app
-COPY package.json yarn.lock prisma .env scripts/update_ip_db.sh ./
+COPY package.json package-lock.json prisma .env scripts/update_ip_db.sh ./
 RUN npm install
 # add sharp for image production
 RUN npm install sharp
