@@ -1,5 +1,5 @@
 import { Media } from '@prisma/client';
-import { BlobViewer } from 'components/atoms/BlobViewer';
+import { BlobViewerV2 } from 'components/atoms/BlobViewerV2';
 import { LayoutMain } from 'components/layouts/LayoutMain';
 import { FeedbackLink, FeedbackTemplate } from 'components/sections/FeedbackLink';
 import mixpanel from 'mixpanel-browser';
@@ -50,7 +50,7 @@ const ViewFile = ({ file, ip, error }: Props) => {
         <div className="mt-6">
           <h2 className="mb-2">{t('attachments')}</h2>
           <div className="relative mb-4">
-            <BlobViewer media={file.Media as Media} />
+            <BlobViewerV2 media={file.Media as Media} />
           </div>
         </div>
         <FeedbackLink template={FeedbackTemplate.UPLOAD} />

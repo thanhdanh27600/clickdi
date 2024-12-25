@@ -28,9 +28,18 @@ const toolbar =
 
 let inited = false;
 
-const TextEditor = ({ defaultValue, readonly }: { defaultValue?: string; readonly?: boolean }) => {
+const TextEditor = ({
+  defaultValue,
+  readonly,
+  reloadKey,
+}: {
+  defaultValue?: string;
+  readonly?: boolean;
+  reloadKey: number;
+}) => {
   const { t, locale } = useTrans();
   const id = useId().replaceAll(':', '-');
+
   useEffect(() => {
     if (!tinymce) return;
 
@@ -55,12 +64,12 @@ const TextEditor = ({ defaultValue, readonly }: { defaultValue?: string; readonl
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt }',
       });
       inited = true;
-    }, 1000);
+    }, 200);
 
     return () => {
       clearInterval(interval);
     };
-  }, [tinymce]);
+  }, [tinymce, reloadKey]);
 
   return (
     <div className={`${readonly ? 'tox-readonly' : ''}`}>

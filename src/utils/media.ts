@@ -6,4 +6,5 @@ export const isImage = (fileType: string | null) => {
 export const UploadProvider = {
   CLD: 'CLD',
   AZURE: 'AZURE',
+  LOCAL: 'LOCAL',
 } as const;

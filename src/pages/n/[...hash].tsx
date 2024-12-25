@@ -1,4 +1,4 @@
-import { BlobViewer } from 'components/atoms/BlobViewer';
+import { BlobViewerV2 } from 'components/atoms/BlobViewerV2';
 import { LayoutMain } from 'components/layouts/LayoutMain';
 import { FeedbackLink, FeedbackTemplate } from 'components/sections/FeedbackLink';
 import { GetServerSidePropsContext } from 'next';
@@ -43,12 +43,12 @@ const ViewNote = ({ note, ip, error }: Props) => {
       </Head>
       <LayoutMain featureTab={false}>
         <h1 className="mx-2 my-4 w-full break-words text-xl font-medium text-gray-700">{note.title}</h1>
-        <TextEditor defaultValue={note.text} readonly />
+        <TextEditor reloadKey={0} defaultValue={note.text} readonly />
         <div className="mt-6">
           {(note.Media || []).length > 0 && <h2 className="mb-2">{t('attachments')}</h2>}
           {note.Media?.map((media, index) => (
             <div className="relative mb-4" key={`blob-${index}`}>
-              <BlobViewer media={media} />
+              <BlobViewerV2 media={media} />
             </div>
           ))}
         </div>

@@ -121,7 +121,7 @@ model Media {
 
   name       String  @default("No name")
   type       String?
-  url        String  @unique
+  url        String?
   externalId String? @unique
   provider   String?
 
@@ -167,4 +167,17 @@ model File {
 
   Media   Media @relation(fields: [mediaId], references: [id])
   mediaId Int   @unique
+}
+
+model Blob {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ip           String?
+  originalName String
+  fileName     String  @unique
+  fileSize     Int
+  fileType     String?
+  uploadPath   String
 }

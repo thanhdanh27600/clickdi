@@ -11,3 +11,4 @@ export * as password from './password';
 export * as qr from './qr';
 export * as shorten from './shorten';
 export * as stats from './stats';
+export * as upload from './upload';

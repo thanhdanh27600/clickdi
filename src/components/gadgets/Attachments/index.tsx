@@ -1,6 +1,6 @@
 import { Media } from '@prisma/client';
 import { Plus, Trash2 } from '@styled-icons/feather';
-import { BlobUploader } from 'components/atoms/BlobUploader';
+import { BlobUploaderV2 } from 'components/atoms/BlobUploaderV2';
 import { useEffect } from 'react';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import { useTrans } from 'utils/i18next';
@@ -51,7 +51,8 @@ export const Attachments = ({
       {fields.map((field, index) => {
         return (
           <div className="relative my-2 md:my-4" key={`blob-${index}`}>
-            <BlobUploader selectedMedia={attachments[index]} name={`blobs.${index}`} />
+            {/* <BlobUploader selectedMedia={attachments[index]} name={`blobs.${index}`} /> */}
+            <BlobUploaderV2 selectedMedia={attachments[index]} name={`blobs.${index}`} />
           </div>
         );
       })}

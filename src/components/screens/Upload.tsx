@@ -6,7 +6,7 @@ import { ShortenUrlTile } from 'components/gadgets/URLShortener/ShortenUrlTile';
 import { FeedbackLink, FeedbackTemplate } from 'components/sections/FeedbackLink';
 import { logEvent } from 'firebase/analytics';
 import mixpanel from 'mixpanel-browser';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
 import { createFileRequest } from 'requests';
 import shortenSlice from 'store/shortenSlice';
@@ -23,7 +23,7 @@ export const Upload = () => {
   const [localError, setLocalError] = useState('');
   const [shortenUrl, setShortenHistory] = shortenSlice((state) => [state.getShortenUrl(), state.setShortenHistory]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setShortenHistory(undefined);
   }, []);
 

@@ -28,13 +28,13 @@ export const validateShortenSchema = z.object({
     ip: z.string({
       required_error: 'IP is required',
     }),
-    url: z.nullable(
-      z
-        .string({
-          description: 'Url is required',
-        })
-        .refine(isUrlToShortenValid, 'Invalid Url'),
-    ),
+    // url: z.nullable(
+    //   z
+    //     .string({
+    //       description: 'Url is required',
+    //     })
+    //     .refine(isUrlToShortenValid, 'Invalid Url'),
+    // ),
     hash: z.nullable(
       z
         .string({
@@ -165,7 +165,7 @@ export type ForwardSchema = z.infer<typeof validateForwardSchema>;
 
 export const validateMediaSchema = z.object({
   body: z.object({
-    url: z.string({
+    name: z.string({
       required_error: 'Url is required',
     }),
   }),
@@ -192,7 +192,7 @@ export const validateNoteSchema = z.object({
   medias: z.array(
     z.object({
       id: z.number(),
-      url: z.string(),
+      // url: z.nullable(z.string()),
       name: z.string(),
       type: z.nullable(z.string()),
       externalId: z.any(),
@@ -224,10 +224,10 @@ export const validateUpdateNoteSchema = z.object({
   medias: z.array(
     z.object({
       id: z.number(),
-      url: z.string(),
+      // url: z.nullable(z.string()),
       name: z.string(),
       type: z.nullable(z.string()),
-      externalId: z.any(),
+      externalId: z.nullable(z.any()),
       provider: z.any(),
     }),
   ),

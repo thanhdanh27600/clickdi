@@ -2,6 +2,7 @@
   "name": "dolph-utils",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "next dev -p 5050",
     "test": "jest --logHeapUsage --forceExit",
@@ -29,6 +30,7 @@
     "@styled-icons/bootstrap": "^10.47.0",
     "@styled-icons/feather": "^10.47.0",
     "@textea/json-viewer": "^2.16.0",
+    "@types/formidable": "^3.4.5",
     "@types/jest": "^29.5.2",
     "@types/nodemailer": "^6.4.9",
     "@types/quill": "^2.0.11",
@@ -45,6 +47,7 @@
     "dotenv": "^16.3.1",
     "fast-memoize": "^2.5.2",
     "firebase": "^10.4.0",
+    "formidable": "^3.5.2",
     "geoip-country": "^4.1.43",
     "handlebars": "^4.7.7",
     "i18next": "^23.7.11",

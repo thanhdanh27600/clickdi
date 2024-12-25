@@ -58,7 +58,7 @@ export const share = (shareData: ShareData, t: any) => {
 
 export function generateFileName(originalFileName?: string): string {
   if (!originalFileName) return '';
-  const hash = generateRandomString(5);
+  const hash = generateRandomString(8);
   const fileExtension = originalFileName.includes('.') ? `.${originalFileName.split('.').pop()}` : '';
   const fileNameWithoutExtension = originalFileName.replace(fileExtension, '');
   return `${fileNameWithoutExtension}_${hash}${fileExtension}`;

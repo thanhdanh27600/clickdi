@@ -128,6 +128,7 @@ export const NoteInput = () => {
     };
     const validate = await validateUpdateNoteSchema.safeParse(data);
     if (!validate.success) {
+      console.log('validate.error', validate.error);
       setLocalError(t((validate.error as ZodError<any>).issues[0].message as any));
     } else {
       const payload = validate.data;
@@ -187,13 +188,14 @@ export const NoteInput = () => {
         </div>
       )}
       <NoteTitleInput />
-      <TextEditor key={(hasNote || 0) + 1} defaultValue={note?.text} />
+      <TextEditor reloadKey={(hasNote || 0) + 1} defaultValue={note?.text} />
       <h2 className="mt-4 text-sm text-gray-700">{t('attachmentsCreate')}</h2>
       <Attachments
         key={(hasNote || 0) + 2}
         generateFor="note"
         defaultValues={hasNote ? note?.Media : [{ id: -1 } as any]}
         onChange={(attachments) => {
+          console.log('attachments', attachments);
           setNote({ Media: attachments });
         }}
       />

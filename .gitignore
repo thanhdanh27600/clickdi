@@ -44,3 +44,4 @@ prisma/*.db*
 /logs
 *.log
 scripts/migrate/
+public/uploads/
