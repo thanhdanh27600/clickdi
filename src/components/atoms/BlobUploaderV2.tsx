@@ -20,15 +20,15 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
-  const fileName = useMemo(
-    () => selectedFile?.name || selectedMedia?.name || 'Unknown file',
-    [selectedFile, selectedMedia],
-  );
-  const fileType = useMemo(() => selectedFile?.type || selectedMedia?.type || null, [selectedFile, selectedMedia]);
+
+  const { setValue, watch } = useFormContext();
+
+  const _name = watch(`${name}.type`);
+  const _type = watch(`${name}.type`);
+  const fileName = useMemo(() => _name || selectedMedia?.name, [_name, selectedMedia]);
+  const fileType = useMemo(() => _type || selectedMedia?.type || null, [_type, selectedMedia]);
   const hasSelected = (selectedMedia?.id || -1) > 0;
   const hasFile = !!hasSelected || !!selectedFile;
-
-  const { setValue } = useFormContext();
 
   useEffect(() => {
     if (!!selectedFile) {
@@ -106,10 +106,16 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
   };
 
   const FileProvider = ({ children }: { children: ReactElement }) => {
+    if (fileName)
+      return (
+        <a download={fileName} target="_blank" href={'/api/upload?fileName=' + fileName}>
+          {children}
+        </a>
+      );
     return (
-      <a download={fileName} target="_blank" href={'/api/azure/download?fileName=' + fileName}>
+      <div className="flex w-full" onDragOver={(e) => e.preventDefault()} onDrop={handleFileDrop}>
         {children}
-      </a>
+      </div>
     );
   };
 
@@ -141,7 +147,7 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
             ) : (
               <ImageIcon className="w-6" />
             )}
-            {!!hasFile ? (
+            {!!hasFile && fileName ? (
               <div>
                 <span className="max-sm:hidden">{truncateMiddle(fileName, 50, 5)}</span>
                 <span className="sm:hidden">{truncateMiddle(fileName, 20, 5)}</span>
@@ -151,16 +157,18 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
               <p className="max-sm:text-sm">{t('selectOrDropFiles')}</p>
             )}
           </div>
-          <div className="absolute bottom-2 flex gap-4">
-            <button className="flex cursor-pointer items-center gap-1 text-gray-700">
-              <Download className="h-4 w-4 " />
-              <p className="text-sm">Download</p>
-            </button>
-            <div className="flex cursor-pointer items-center gap-1 text-gray-700" onClick={handleDelete}>
-              <Trash className="h-4 w-4 " />
-              <p className="text-sm">Delete</p>
+          {hasFile && (
+            <div className="absolute bottom-2 flex gap-4">
+              <button className="flex cursor-pointer items-center gap-1 text-gray-700">
+                <Download className="h-4 w-4 " />
+                <p className="text-sm">Download</p>
+              </button>
+              <div className="flex cursor-pointer items-center gap-1 text-gray-700" onClick={handleDelete}>
+                <Trash className="h-4 w-4 " />
+                <p className="text-sm">Delete</p>
+              </div>
             </div>
-          </div>
+          )}
         </label>
       </FileProvider>
       {error && <p className="text-red-400">{error}</p>}
