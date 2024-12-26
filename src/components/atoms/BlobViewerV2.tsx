@@ -1,7 +1,6 @@
 import { Media } from '@prisma/client';
 import { File, Image as ImageIcon } from '@styled-icons/feather';
 import clsx from 'clsx';
-import { BASE_URL } from 'types/constants';
 import { isImage } from 'utils/media';
 import { truncateMiddle } from 'utils/text';
 
@@ -11,7 +10,6 @@ export const BlobViewerV2 = ({ media }: { media: Media }) => {
       <a
         download={media.name}
         target="_self"
-        ref={BASE_URL}
         referrerPolicy="same-origin"
         href={`/api/upload?fileName=${media.name}`}
         className="flex cursor-pointer items-center gap-1 text-gray-500 hover:text-gray-900">

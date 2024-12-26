@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { API } from 'requests/api';
-import { BASE_URL, LIMIT_FILE_UPLOAD } from 'types/constants';
+import { LIMIT_FILE_UPLOAD } from 'types/constants';
 import { useTrans } from 'utils/i18next';
 import { UploadProvider, isImage } from 'utils/media';
 import { truncateMiddle } from 'utils/text';
@@ -108,12 +108,7 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
   const FileProvider = ({ children }: { children: ReactElement }) => {
     if (fileName)
       return (
-        <a
-          download={fileName}
-          ref={BASE_URL}
-          referrerPolicy="same-origin"
-          target="_self"
-          href={'/api/upload?fileName=' + fileName}>
+        <a download={fileName} referrerPolicy="same-origin" target="_self" href={'/api/upload?fileName=' + fileName}>
           {children}
         </a>
       );
