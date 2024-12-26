@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { BASE_URL, brandUrl, brandUrlShort, localUrlShort } from '../types/constants';
+import { BASE_URL, brandUrl, brandUrlShort, isLocal, localUrl, localUrlShort } from '../types/constants';
+import HttpStatusCode from '../utils/statusCode';
 
 export const API = axios.create({
   baseURL: BASE_URL,
@@ -26,7 +27,7 @@ export function withAuth(token?: string) {
   };
 }
 
-const allowedOrigins = [brandUrl, localUrlShort, brandUrlShort];
+const allowedOrigins = isLocal ? [localUrl, localUrlShort] : [brandUrl, brandUrlShort];
 
 export const allowCors = (handler: any) => async (req: NextApiRequest, res: NextApiResponse) => {
   const origin = req.headers?.origin;
@@ -45,4 +46,18 @@ export const allowCors = (handler: any) => async (req: NextApiRequest, res: Next
     return;
   }
   return await handler(req, res);
+};
+
+export const cors = (handler: any) => async (req: NextApiRequest, res: NextApiResponse) => {
+  const origin = req.headers?.origin;
+  console.log('origin', origin);
+
+  // Allow requests from the same origin
+  if (!!origin && allowedOrigins.includes(origin)) {
+    return await handler(req, res);
+  }
+
+  // Block requests from other origins
+  res.setHeader('Access-Control-Allow-Origin', 'false');
+  return res.status(HttpStatusCode.FORBIDDEN).send('CORS policy: No access from this origin');
 };

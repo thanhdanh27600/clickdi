@@ -1,6 +1,7 @@
 import { upload } from 'controllers';
+import { cors } from '../../../requests/api';
 
-export default upload.handler;
+export default cors(upload.handler);
 
 export const config = {
   api: {

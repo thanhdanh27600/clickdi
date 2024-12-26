@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import path from 'path';
 import requestIp from 'request-ip';
 import prisma from '../../services/db/prisma';
-import { isDebug, LIMIT_FILE_UPLOAD } from '../../types/constants';
+import { isLocal, LIMIT_FILE_UPLOAD } from '../../types/constants';
 import { api, successHandler } from '../../utils/axios';
 import HttpStatusCode from '../../utils/statusCode';
 import { generateFileName } from '../../utils/text';
@@ -66,7 +66,7 @@ export const handler = api<any>(
         });
         return successHandler(res, {
           filename: uniqueFileName,
-          blob: isDebug ? blob : undefined,
+          blob: isLocal ? blob : undefined,
         });
       } catch (error: any) {
         return res.status(HttpStatusCode.BAD_GATEWAY).json({ error: 'File upload failed ' + error?.message });
