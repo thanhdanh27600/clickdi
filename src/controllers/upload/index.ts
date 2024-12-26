@@ -18,7 +18,6 @@ function validateFile(file: formidable.File): boolean {
 
 export const handler = api<any>(
   async (req, res) => {
-    console.log('req', req);
     if (req.method === 'GET') return await getBlob(req, res);
 
     const ip = requestIp.getClientIp(req)!;

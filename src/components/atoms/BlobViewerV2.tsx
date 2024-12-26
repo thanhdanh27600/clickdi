@@ -9,7 +9,7 @@ export const BlobViewerV2 = ({ media }: { media: Media }) => {
     <div>
       <a
         download={media.name}
-        target="_blank"
+        target="_self"
         href={`/api/upload?fileName=${media.name}`}
         className="flex cursor-pointer items-center gap-1 text-gray-500 hover:text-gray-900">
         <div
