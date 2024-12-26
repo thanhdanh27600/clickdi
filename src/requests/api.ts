@@ -50,7 +50,6 @@ export const allowCors = (handler: any) => async (req: NextApiRequest, res: Next
 
 export const cors = (handler: any) => async (req: NextApiRequest, res: NextApiResponse) => {
   const origin = req.headers?.origin;
-  console.log('origin', origin);
 
   // Allow requests from the same origin
   if (!!origin && allowedOrigins.includes(origin)) {

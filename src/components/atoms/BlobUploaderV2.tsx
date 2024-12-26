@@ -108,7 +108,7 @@ export const BlobUploaderV2 = ({ name = '', selectedMedia }: Props) => {
   const FileProvider = ({ children }: { children: ReactElement }) => {
     if (fileName)
       return (
-        <a download={fileName} referrerPolicy="same-origin" target="_self" href={'/api/upload?fileName=' + fileName}>
+        <a download={fileName} referrerPolicy="same-origin" target="_self" href={'/api/download?fileName=' + fileName}>
           {children}
         </a>
       );

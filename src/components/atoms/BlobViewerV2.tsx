@@ -11,7 +11,7 @@ export const BlobViewerV2 = ({ media }: { media: Media }) => {
         download={media.name}
         target="_self"
         referrerPolicy="same-origin"
-        href={`/api/upload?fileName=${media.name}`}
+        href={`/api/download?fileName=${media.name}`}
         className="flex cursor-pointer items-center gap-1 text-gray-500 hover:text-gray-900">
         <div
           className={clsx(

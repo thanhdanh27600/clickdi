@@ -1,7 +1,6 @@
 import formidable from 'formidable';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { NextApiRequest, NextApiResponse } from 'next/types';
 import path from 'path';
 import requestIp from 'request-ip';
 import prisma from '../../services/db/prisma';
@@ -18,8 +17,6 @@ function validateFile(file: formidable.File): boolean {
 
 export const handler = api<any>(
   async (req, res) => {
-    if (req.method === 'GET') return await getBlob(req, res);
-
     const ip = requestIp.getClientIp(req)!;
 
     // Create upload directory if not exists
@@ -72,36 +69,5 @@ export const handler = api<any>(
       }
     });
   },
-  ['GET', 'POST'],
+  ['POST'],
 );
-
-async function getBlob(req: NextApiRequest, res: NextApiResponse) {
-  if (typeof req.query.fileName !== 'string' || !req.query.fileName?.trim().length) {
-    return res.status(HttpStatusCode.NOT_FOUND).json({ error: 'File not found' });
-  }
-  try {
-    const file = await prisma.blob.findUnique({
-      where: {
-        fileName: req.query.fileName as string,
-      },
-    });
-
-    if (!file) {
-      return res.status(HttpStatusCode.NOT_FOUND).json({ error: 'File not found' });
-    }
-
-    // Check file exists
-    await fs.access(file.uploadPath);
-
-    // Read file
-    const fileBuffer = await fs.readFile(file.uploadPath);
-
-    // Create response with file download headers
-    res.setHeader('Content-Type', file.fileType || '');
-    res.setHeader('Content-Disposition', `attachment; filename="${file.fileName}"`);
-    res.setHeader('Content-Length', fileBuffer.length.toString());
-    return res.status(HttpStatusCode.OK).write(fileBuffer);
-  } catch (error: any) {
-    return res.status(HttpStatusCode.BAD_REQUEST).json({ error: 'Download failed' + error.message });
-  }
-}

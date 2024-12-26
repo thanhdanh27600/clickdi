@@ -1,5 +1,6 @@
 export * as cache from './cache';
 export * as cld from './cld';
+export * as download from './download';
 export * as file from './file';
 export * as forward from './forward';
 export * as h from './h';
