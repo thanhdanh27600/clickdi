@@ -4,15 +4,14 @@ export const isUAT = process.env.NEXT_PUBLIC_BUILD_ENV === 'uat';
 export const isProduction = process.env.NEXT_PUBLIC_BUILD_ENV === 'production';
 export const localUrl = 'http://localhost:5050';
 export const localUrlShort = 'http://localhost:5001';
-export const brandUrl = 'https://quickshare.at';
-// export const brandUrlShort = 'https://qsh.at';
-export const brandUrlShort = 'https://quickshare.at';
-export const brandUrlUat = 'https://uat.quickshare.at';
+export const brandUrl = 'https://quickshare.my';
+export const brandUrlShort = 'https://quickshare.my';
+export const brandUrlUat = 'https://uat.quickshare.my';
 // export const brandUrlShortUat = 'https://uat.qsh.at';
-export const brandUrlShortUat = 'https://uat.quickshare.at';
+export const brandUrlShortUat = 'https://uat.quickshare.my';
 
 // export const brandUrlShortDomain = 'qsh.at';
-export const brandUrlShortDomain = 'quickshare.at';
+export const brandUrlShortDomain = 'quickshare.my';
 export const isTest = process.env.NODE_ENV === 'test';
 export const cdnUrl = 'https://cdn.jsdelivr.net/gh/thanhdanh27600/quickshare@production/public';
 export const GOOGLE_ADS_CLIENT_ID = 'ca-pub-5833291778924123';
@@ -68,7 +67,7 @@ export const baseUrl = (useShortDomain: boolean = false) => {
 };
 export const BASE_URL = baseUrl();
 export const BASE_URL_SHORT = baseUrl(true);
-export const BASE_URL_OG = !isLocal ? 'https://og.quickshare.at' : 'http://localhost:7071';
+export const BASE_URL_OG = !isLocal ? 'https://og.quickshare.my' : 'http://localhost:7071';
 export const REDIS_KEY = {
   LIMIT_SHORTEN: 'limitShort',
   LIMIT_FORWARD: 'limitForward',

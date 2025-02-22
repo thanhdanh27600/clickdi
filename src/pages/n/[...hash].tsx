@@ -31,13 +31,13 @@ const ViewNote = ({ note, ip, error }: Props) => {
       <Head>
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.facebook.com/quickshare.at/" />
+        <meta property="og:url" content="https://www.facebook.com/quickshare.my/" />
         <meta property="og:title" content={t('ogTitle', { hash: note.hash })} />
         <meta property="og:description" content={t('ogDescription')} />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        {/* <meta property="twitter:url" content="https://twitter.com/quickshare.at" /> */}
+        {/* <meta property="twitter:url" content="https://twitter.com/quickshare.my" /> */}
         <meta property="twitter:title" content={t('ogTitle', { hash: note.hash })} />
         <meta property="twitter:description" content={t('ogDescription')} />
       </Head>

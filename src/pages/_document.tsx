@@ -48,7 +48,7 @@ export default function Document() {
         )}
 
         <link rel="stylesheet" href={cdn(`/lib/styles.min.css`)} />
-        <Script strategy="beforeInteractive" src="https://cdn.quickshare.at/tinymce/tinymce.min.js"></Script>
+        <Script strategy="beforeInteractive" src="https://cdn.quickshare.my/tinymce/tinymce.min.js"></Script>
         <Script
           strategy="beforeInteractive"
           src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></Script>

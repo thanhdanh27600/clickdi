@@ -6,56 +6,56 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://quickshare.at</loc>
+  <loc>https://quickshare.my</loc>
   <lastmod>2024-03-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/tracking</loc>
+  <loc>https://quickshare.my/tracking</loc>
   <lastmod>2024-03-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/note</loc>
+  <loc>https://quickshare.my/note</loc>
   <lastmod>2023-09-12</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/contact</loc>
+  <loc>https://quickshare.my/contact</loc>
   <lastmod>2024-03-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/terms-of-service</loc>
+  <loc>https://quickshare.my/terms-of-service</loc>
   <lastmod>2023-09-15</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/privacy-policy</loc>
+  <loc>https://quickshare.my/privacy-policy</loc>
   <lastmod>2023-09-15</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/en</loc>
+  <loc>https://quickshare.my/en</loc>
   <lastmod>2023-09-10</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/en/tracking</loc>
+  <loc>https://quickshare.my/en/tracking</loc>
   <lastmod>2024-03-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
@@ -63,84 +63,84 @@
 
 
 <url>
-  <loc>https://quickshare.at/en/note</loc>
+  <loc>https://quickshare.my/en/note</loc>
   <lastmod>2023-09-12</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/en/contact</loc>
+  <loc>https://quickshare.my/en/contact</loc>
   <lastmod>2024-03-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/en/terms-of-service</loc>
+  <loc>https://quickshare.my/en/terms-of-service</loc>
   <lastmod>2023-09-15</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/en/privacy-policy</loc>
+  <loc>https://quickshare.my/en/privacy-policy</loc>
   <lastmod>2023-09-15</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/zh</loc>
+  <loc>https://quickshare.my/zh</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/zh/note</loc>
+  <loc>https://quickshare.my/zh/note</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/fr</loc>
+  <loc>https://quickshare.my/fr</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/fr/note</loc>
+  <loc>https://quickshare.my/fr/note</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/ja</loc>
+  <loc>https://quickshare.my/ja</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/ja/note</loc>
+  <loc>https://quickshare.my/ja/note</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/hi</loc>
+  <loc>https://quickshare.my/hi</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://quickshare.at/hi/note</loc>
+  <loc>https://quickshare.my/hi/note</loc>
   <lastmod>2023-09-22</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>

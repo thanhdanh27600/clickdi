@@ -103,8 +103,8 @@ const PrivacyPolicy = () => {
           <li>
             <p>
               <strong>Website</strong> refers to Quickshare, accessible from{' '}
-              <a href="https://quickshare.at" rel="external nofollow noopener" target="_blank">
-                https://quickshare.at
+              <a href="https://quickshare.my" rel="external nofollow noopener" target="_blank">
+                https://quickshare.my
               </a>
             </p>
           </li>
@@ -419,8 +419,8 @@ const PrivacyPolicy = () => {
         <ul>
           <li>
             By email:{' '}
-            <a href="mailto:quickshare.at@gmail.com" className="text-cyan-500">
-              quickshare.at@gmail.com
+            <a href="mailto:quickshare.my@gmail.com" className="text-cyan-500">
+              quickshare.my@gmail.com
             </a>
           </li>
         </ul>

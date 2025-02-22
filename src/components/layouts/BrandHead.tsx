@@ -27,13 +27,13 @@ export const BrandHead = ({ feature = FeatureTabKey.SHARE_LINK }: { feature?: Fe
       {isProduction && <title>{brandTitle}</title>}
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.facebook.com/quickshare.at/" />
+      <meta property="og:url" content="https://www.facebook.com/quickshare.my/" />
       <meta property="og:title" content={brandTitle} />
       <meta property="og:description" content={brandDescription} />
       <meta property="og:image" content={`${BASE_URL}/assets/quickshare-banner-${locale || defaultLocale}.jpg`} />
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      {/* <meta property="twitter:url" content="https://x.com/quickshare.at" /> */}
+      {/* <meta property="twitter:url" content="https://x.com/quickshare.my" /> */}
       <meta property="twitter:title" content={brandTitle} />
       <meta property="twitter:description" content={brandDescription} />
       <meta property="og:image" content={`${BASE_URL}/assets/quickshare-banner-${locale || defaultLocale}.jpg`} />

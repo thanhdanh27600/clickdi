@@ -12,7 +12,7 @@ Lightweight web application for create notes and shortening URLs, along with rea
 
 - **Detect Human Clicks**: Distinguish genuine clicks from bots or automated scripts.
 
-- **Free to Use**: Start to use [https://quickshare.at](https://quickshare.at)
+- **Free to Use**: Start to use [https://quickshare.my](https://quickshare.my)
 , always free.
 
 ## How to Build

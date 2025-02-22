@@ -41,7 +41,7 @@ const ViewFile = ({ file, ip, error }: Props) => {
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        {/* <meta property="twitter:url" content="https://twitter.com/quickshare.at" /> */}
+        {/* <meta property="twitter:url" content="https://twitter.com/quickshare.my" /> */}
         <meta property="twitter:title" content={t('ogTitle', { hash: file.hash })} />
         <meta property="twitter:description" content={t('ogDescription')} />
       </Head>
